@@ -10,14 +10,16 @@ interface Props {
 const { title, description, technologies, github, liveUrl } = Astro.props;
 ---
 
-<article class="bg-white rounded-lg border border-gray-200 p-6 hover:border-gray-300 transition-colors">
-  <h3 class="text-lg font-semibold text-gray-900">{title}</h3>
+<article class="group bg-surface-elevated rounded-xl border border-border p-6 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+  <h3 class="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors">
+    {title}
+  </h3>
 
-  <p class="mt-2 text-gray-600">{description}</p>
+  <p class="mt-2 text-text-secondary">{description}</p>
 
   <div class="mt-4 flex flex-wrap gap-2">
     {technologies.map((tech) => (
-      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-300 border border-purple-500/20">
         {tech}
       </span>
     ))}
@@ -29,7 +31,7 @@ const { title, description, technologies, github, liveUrl } = Astro.props;
         href={github}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm text-gray-600 hover:text-gray-900 inline-flex items-center gap-1"
+        class="text-sm text-text-tertiary hover:text-purple-400 inline-flex items-center gap-1 transition-colors"
       >
         <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
           <path
@@ -46,7 +48,7 @@ const { title, description, technologies, github, liveUrl } = Astro.props;
         href={liveUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm text-gray-600 hover:text-gray-900 inline-flex items-center gap-1"
+        class="text-sm text-text-tertiary hover:text-purple-400 inline-flex items-center gap-1 transition-colors"
       >
         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path

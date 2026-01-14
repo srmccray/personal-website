@@ -7,27 +7,51 @@ interface Props {
 const { name, tagline } = Astro.props;
 ---
 
-<section class="py-20 sm:py-32">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
-      {name}
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/louvre-hero.jpg"
+      alt=""
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <!-- Purple gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-purple-900/70 via-surface/80 to-surface"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-16">
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
+      <span class="text-white">Hi, I'm </span>
+      <span class="text-gradient">{name}</span>
     </h1>
-    <p class="mt-6 text-xl text-gray-600 max-w-2xl">
+    <p class="mt-6 text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto">
       {tagline}
     </p>
-    <div class="mt-10 flex gap-4">
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
       <a
         href="/projects"
-        class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
+        class="inline-flex items-center px-8 py-4 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-500 transition-colors shadow-lg shadow-purple-500/25"
       >
         View Projects
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
       </a>
       <a
         href="/about"
-        class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+        class="inline-flex items-center px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/10 transition-colors backdrop-blur-sm"
       >
         About Me
       </a>
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
   </div>
 </section>

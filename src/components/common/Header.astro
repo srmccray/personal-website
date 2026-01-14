@@ -8,26 +8,35 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-white border-b border-gray-200">
-  <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<header
+  id="header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <nav class="max-w-5xl mx-auto px-6">
     <div class="flex justify-between h-16 items-center">
-      <a href="/" class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
+      <a
+        href="/"
+        class="text-xl font-semibold text-white hover:text-purple-400 transition-colors"
+      >
         Stephen McCray
       </a>
 
-      <ul class="flex space-x-8">
+      <ul class="flex items-center space-x-8">
         {navItems.map((item) => (
           <li>
             <a
               href={item.href}
               class:list={[
-                "text-sm font-medium transition-colors",
+                "text-sm font-medium transition-colors relative",
                 currentPath === item.href
-                  ? "text-primary"
-                  : "text-gray-600 hover:text-gray-900",
+                  ? "text-purple-400"
+                  : "text-gray-300 hover:text-white",
               ]}
             >
               {item.label}
+              {currentPath === item.href && (
+                <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple-500 rounded-full" />
+              )}
             </a>
           </li>
         ))}
@@ -35,3 +44,18 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 </header>
+
+<script>
+  const header = document.getElementById('header');
+
+  function updateHeader() {
+    if (window.scrollY > 50) {
+      header?.classList.add('glass', 'border-b', 'border-white/10');
+    } else {
+      header?.classList.remove('glass', 'border-b', 'border-white/10');
+    }
+  }
+
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+</script>
