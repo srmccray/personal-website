@@ -1,0 +1,37 @@
+---
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-white border-b border-gray-200">
+  <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <a href="/" class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
+        Stephen McCray
+      </a>
+
+      <ul class="flex space-x-8">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                "text-sm font-medium transition-colors",
+                currentPath === item.href
+                  ? "text-primary"
+                  : "text-gray-600 hover:text-gray-900",
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>

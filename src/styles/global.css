@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Custom design tokens */
+@theme {
+  --color-primary: #3b82f6;
+  --color-accent: #8b5cf6;
+  --font-sans: "Inter", system-ui, sans-serif;
+}

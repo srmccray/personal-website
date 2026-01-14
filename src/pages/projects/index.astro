@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import ProjectCard from "@components/projects/ProjectCard.astro";
+
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout title="Projects - Stephen McCray" description="Personal projects by Stephen McCray">
+  <section class="py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+        Projects
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        A collection of things I've built and worked on.
+      </p>
+
+      <div class="mt-12 grid gap-6">
+        {sortedProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            technologies={project.data.technologies}
+            github={project.data.github}
+            liveUrl={project.data.liveUrl}
+          />
+        ))}
+      </div>
+
+      {sortedProjects.length === 0 && (
+        <p class="mt-12 text-gray-500">No projects yet. Check back soon!</p>
+      )}
+    </div>
+  </section>
+</PageLayout>
